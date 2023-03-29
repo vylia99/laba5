@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Lab5ArrayReader implements DoubleArrayReader{
 
     public double[] readOneDimensionalArray(File file) {
-        try (Scanner in = new Scanner(new File(file.toURI()))){
+        try (Scanner in = new Scanner(file)){
             int n = in.nextInt();
             double[] arr = new double[n];
             for (int i = 0; i < arr.length; i++) {
@@ -22,12 +22,11 @@ public class Lab5ArrayReader implements DoubleArrayReader{
     }
 
     public double[][] readTwoDimensionalArray(File file) {
-        try (Scanner in = new Scanner(new File(file.toURI()))) {
+        try (Scanner in = new Scanner(file)) {
             int n = in.nextInt();
-            int m = in.nextInt();
-            double[][] arr = new double[n][m];
+            double[][] arr = new double[n][n];
             for (int i = 0; i < arr.length; i++) {
-                for (int j=0; j<arr.length;j++){
+                for (int j=0; j<arr[i].length;j++){
                     arr[i][j] = in.nextDouble();
                 }
             }
@@ -40,35 +39,12 @@ public class Lab5ArrayReader implements DoubleArrayReader{
     }
 
     public double[][] readTwoDimensionalArray(String fileName) {
-        try (Scanner in = new Scanner(new File(fileName))) {
-            int n = in.nextInt();
-            int m = in.nextInt();
-            double[][] arr = new double[n][m];
-            for (int i = 0; i < arr.length; i++) {
-                for (int j=0; j<arr.length;j++){
-                    arr[i][j] = in.nextDouble();
-                }
-            }
-            return arr;
-        } catch (IOException ex) {
-            System.err.println("Error reading file");
-            return null;
-        }
+        return readTwoDimensionalArray(new File(fileName));
 
     }
 
 
     public double[] readOneDimensionalArray(String fileName) {
-        try (Scanner in = new Scanner(new File(fileName))) {
-            int n = in.nextInt();
-            double[] arr = new double[n];
-            for (int i = 0; i < arr.length; i++) {
-                arr[i] = in.nextDouble();
-            }
-            return arr;
-        } catch (IOException ex) {
-            System.err.println("Error reading file");
-            return null;
-        }
+       return readOneDimensionalArray(new File(fileName));
     }
 }

@@ -47,8 +47,8 @@ Lab5ArrayReader lab5ArrayReader;
     void testReadTwoDimensionalArray2() {
         File file = new File("filetest2.txt");
         double[][] result = lab5ArrayReader.readTwoDimensionalArray(file);
-        int expected = 16;
-        assertEquals(expected, result.length, 1.e-2);
+        int expected = 4;
+        assertEquals(expected, result.length);
     }
 
 
